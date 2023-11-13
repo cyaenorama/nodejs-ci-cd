@@ -7,7 +7,6 @@ module.exports = {
   collectCoverage: false,
   coverageDirectory: 'coverage',
   moduleFileExtensions: ['js', 'json', 'node'],
-
   testMatch: [
     '**/?(*.)+(test|spec).js',
     '**/(tests|mocks)/**/*.js',
@@ -17,5 +16,15 @@ module.exports = {
     '^.+\\.js$': 'babel-jest'
   },
   transformIgnorePatterns: [`/node_modules/(?!${esModules})`],
+  reporters: [
+    'default',
+    [
+      'jest-junit',
+      {
+        outputDirectory: './test-reports',
+        outputName: 'junit.xml'
+      }
+    ]
+  ],
   verbose: true
 };

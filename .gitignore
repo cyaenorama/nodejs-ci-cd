@@ -47,6 +47,10 @@ coverage
 # jest cache
 .jest-cache/
 
+# reports
+reports/
+test-reports/
+
 # husky config
 .husky/
 
