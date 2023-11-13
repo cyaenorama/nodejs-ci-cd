@@ -12,7 +12,6 @@
     "start": "node ./src/main.js",
     "test": "NODE_ENV=test jest --passWithNoTests",
     "test:watch": "npm run test -- --watch",
-    "test:staged": "npm run test -- --findRelatedTests",
     "test:coverage": "npm run test -- --coverage",
     "lint": "eslint './**/*.js'",
     "lint:fix": "npm run lint -- --fix",
