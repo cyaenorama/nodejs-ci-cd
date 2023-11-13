@@ -1,0 +1,71 @@
+# ignoring git folder
+.git
+
+# workspace configurations
+.idea/
+.vscode/
+
+# Dependency directories
+node_modules/
+
+# production build directories
+lib/
+out/
+dist/
+build/
+
+# dotenv environment variable files
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+
+# ignoring all the markdown
+*.md
+
+# ssl directory
+.ssl/
+
+# uploaded files dir
+uploads/
+
+# Coverage directory used by tools like istanbul
+coverage
+*.lcov
+
+# ignoring cache folders
+.cache/
+
+# jest cache
+.jest-cache/
+
+# husky config
+.husky/
+
+# temp dirs
+tmp/
+temp/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Misc.
+.DS_Store

@@ -1,0 +1,27 @@
+# dependency directories
+node_modules/
+
+# production build dir
+lib/
+out/
+dist/
+build/
+
+# Logs
+logs/
+
+# code coverage directory used by tools like istanbul
+coverage/
+
+# jest cache
+.jest-cache/
+
+# husky config
+.husky/
+
+# temp dirs
+tmp/
+temp/
+
+package-lock.json
+yarn.lock
