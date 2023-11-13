@@ -15,7 +15,6 @@ To test this application, use these following commands.
 ```bash
 > npm run test
 > npm run test:watch
-> npm run test:staged
 > npm run test:coverage
 ```
 
