@@ -1,0 +1,64 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code, and run tests across different versions of the node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Node.js CI
+
+# Controls when the workflow will run
+on:
+  # [dev/rel/customer-rel]-[maj.min.fix]-[alpha/beta/uat] branch naming convention
+
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches:
+      - master
+      - main
+      - dev
+      - dev-*
+      - rel
+      - rel-*
+      - "*-rel-*"
+  pull_request:
+    branches:
+      - master
+      - main
+      - dev
+      - dev-*
+      - rel
+      - rel-*
+      - "*-rel-*"
+
+env:
+  REPO_NAME: nodejs-ci-cd     # Set this to your application's name
+  REPO_PACKAGE_PATH: .        # Set this to the path to your web app project, defaults to the repository root
+
+permissions:
+  contents: read
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x, 20.x]
+
+    name: Node ${{ matrix.node }} sample
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          # node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+      - name: Install dependencies
+        run: npm ci
+      - name: Run tests
+        run: npm test
