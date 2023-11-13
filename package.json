@@ -9,7 +9,7 @@
   },
   "main": "./src/main.js",
   "scripts": {
-    "start": "node ./src/main.ts",
+    "start": "node ./src/main.js",
     "test": "NODE_ENV=test jest --passWithNoTests",
     "test:watch": "npm run test -- --watch",
     "test:staged": "npm run test -- --findRelatedTests",
@@ -42,6 +42,8 @@
     "@babel/register": "^7.22.15",
     "@commitlint/cli": "^18.4.1",
     "@commitlint/config-conventional": "^18.4.0",
+    "@types/jest": "^29.5.8",
+    "@types/node": "^20.9.0",
     "babel-jest": "^29.7.0",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "3.3.0",
