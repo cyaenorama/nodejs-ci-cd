@@ -41,12 +41,12 @@ jobs:
       # Install the cosign tool except on PR
       # https://github.com/sigstore/cosign-installer
       - name: Install cosign
-        if: github.event_name != 'pull_request'
+        if: ${{ github.event_name != 'pull_request' }}
         uses: sigstore/cosign-installer@v3.1.1
         with:
           cosign-release: "v2.1.1"
       - name: Check cosign install
-        if: github.event_name != 'pull_request'
+        if: ${{ github.event_name != 'pull_request' }}
         run: cosign version
 
       # Extract metadata (tags, labels) for Docker
@@ -75,7 +75,7 @@ jobs:
       # use a personal access token. Don't use your account password.
       # https://github.com/docker/login-action
       - name: Login to Docker Hub
-        if: github.event_name != 'pull_request'
+        if: ${{ github.event_name != 'pull_request' }}
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
@@ -89,16 +89,16 @@ jobs:
           context: .
           # file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
-          push: true
-          # push: ${{ github.event_name != 'pull_request' }}
-          # tags: ${{ steps.meta.outputs.tags }}
+          # push: true
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
           # tags: your-dockerhub-username/your-repo-name:latest
-          tags: |
-            your-dockerhub-username/your-repo-name:latest
-            your-dockerhub-username/your-repo-name:${{ github.sha }}
-          # labels: ${{ steps.meta.outputs.labels }}
-          # cache-from: type=gha
-          # cache-to: type=gha,mode=max
+          # tags: |
+          #   your-dockerhub-username/your-repo-name:latest
+          #   your-dockerhub-username/your-repo-name:${{ github.sha }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       # Sign the resulting Docker image digest except on PRs.
       # This will only write to the public Rekor transparency log when the Docker
@@ -114,3 +114,4 @@ jobs:
         # This step uses the identity token to provision an ephemeral certificate
         # against the sigstore community Fulcio instance.
         run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
+        
