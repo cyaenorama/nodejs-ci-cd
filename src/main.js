@@ -1,3 +1,3 @@
 const greet = require('./greet');
 
-console.log(greet('Sayan'));
+console.log(greet('Cyan'));
