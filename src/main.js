@@ -1,3 +1,3 @@
 const greet = require('./greet');
 
-console.log(greet('Cyan'));
+console.log(greet('Docker'));
