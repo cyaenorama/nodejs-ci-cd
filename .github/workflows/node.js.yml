@@ -1,15 +1,16 @@
 name: Node.js CI
 
 on:
-  # [dev/rel/customer-rel/customer-dev]-[major.minor.patch]-[alpha/beta/uat] tag naming convention
-
   push:
     branches:
-      - "main"
-      - "dev"
-  # pull_request:
-  #   branches: [master, main, dev, rel, rel-*, "*-rel-*"]
-
+      - "*"
+      # - "dev"
+  pull_request:
+    branches:
+      - "*"
+      # - "master"
+      # - "main"
+      
 jobs:
   build:
     runs-on: ubuntu-latest
