@@ -4,9 +4,6 @@ on:
   # schedule:
   #   - cron: "* * * * *"
   push:
-    branches:
-      - "main"
-      - "dev"
     tags:
       - "v*"
       # - "v*.*.*"
@@ -68,7 +65,7 @@ jobs:
       # use a personal access token. Don't use your account password.
       # https://github.com/docker/login-action
       - name: Login to Docker Hub
-        # if: ${{ github.event_name != 'pull_request' }}
+        if: ${{ github.event_name != 'pull_request' }}
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
@@ -82,20 +79,19 @@ jobs:
           context: .
           file: ./Dockerfile
           platforms: linux/amd64
-          # platforms: linux/amd64,linux/arm64
-          push: true
-          # push: ${{ github.event_name != 'pull_request' }}
+          # push: true
+          push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
-          # tags: your-dockerhub-username/your-repo-name:tag
+          # tags: dockerhub-username/repo-name:tag
           # tags: |
-          #   your-dockerhub-username/your-repo-name:tag
-          #   your-dockerhub-username/your-repo-name:${{ github.sha }}
+          #   dockerhub-username/repo-name:tag
+          #   dockerhub-username/repo-name:${{ github.sha }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
       # # Sign the resulting Docker image digest except on PRs.
-      # # This will only write to the public Rekor transparency log when the Docker
+      # # This will only be written to the public Rekor transparency log when the Docker
       # # repository is public to avoid leaking data.  If you would like to publish
       # # transparency data even for private images, pass --force to cosign below.
       # # https://github.com/sigstore/cosign
