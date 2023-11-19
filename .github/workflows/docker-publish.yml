@@ -4,8 +4,8 @@ on:
   # schedule:
   #   - cron: "* * * * *"
   push:
-    branches:
-      - "*"
+    # branches:
+    #   - "*"
     tags:
       - "v*"
       # - "v*.*.*"
