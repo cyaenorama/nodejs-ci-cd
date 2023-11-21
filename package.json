@@ -13,7 +13,9 @@
     "test": "NODE_ENV=test jest --passWithNoTests",
     "test:watch": "npm run test -- --watch",
     "test:coverage": "npm run test -- --coverage",
-    "commit": "npm run test && git-cz"
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "commit": "npm run lint && npm run test && git-cz"
   },
   "repository": {
     "type": "git",
