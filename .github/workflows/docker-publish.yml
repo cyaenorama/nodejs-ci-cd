@@ -4,11 +4,6 @@ on:
   push:
     tags:
       - "v*"
-  workflow_run:
-    workflows:
-      - "Node.js CI"
-    types:
-      - "completed"
   workflow_dispatch:
 
 env:
@@ -18,8 +13,6 @@ env:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
-
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     permissions:
       contents: read
