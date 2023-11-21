@@ -1,5 +1,5 @@
 const sum = require('./sum');
 
-console.log('Greetings from Docker!\n');
+console.log('Greetings from Docker!!!\n');
 
-console.log(`Sum of 3 + 4 is: ${sum(3, 4)}`);
+console.log(`Sum of 4 + 6 is: ${sum(4, 6)}`);
